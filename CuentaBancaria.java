@@ -14,7 +14,7 @@ public class CuentaBancaria {
     private String entidad;
     private String oficina;
     private String numCuenta;
-    
+
     // atributos de clase
     private static final int TAM_MAX = 100;
     private static final int TAM_MIN = 10;
@@ -36,11 +36,11 @@ public class CuentaBancaria {
             throw new IllegalArgumentException("El número de cuenta no es válido.");
 
         // llegados a este punto, todos los parámetros de entrada son correctos, por lo que procedemos a incluirlos en el objeto
-        this.titular = titular;
-        this.entidad = entidad;
-        this.oficina = oficina;
-        this.numCuenta = numCuenta;
-        saldo = 0;
+        this.setTitular(titular);
+        this.setEntidad(entidad);
+        this.setOficina(oficina);
+        this.setNumCuenta(numCuenta);
+        setSaldo(0);
     }
 
     /**
@@ -60,7 +60,7 @@ public class CuentaBancaria {
      */
     public void ingresar (double cantidad) {
         if (cantidad>=0)
-            saldo = saldo + cantidad;
+            setSaldo(getSaldo() + cantidad);
         else
             throw new IllegalArgumentException("No es posible realizar la operación. La cantidad a ingresar debe ser un número positivo. ");
     }
@@ -72,8 +72,8 @@ public class CuentaBancaria {
      */
     public void retirar (double cantidad) {
         if (cantidad>=0)
-            if (cantidad <= saldo)
-                saldo = saldo - cantidad;
+            if (cantidad <= getSaldo())
+                setSaldo(getSaldo() - cantidad);
             else
                 throw new IllegalArgumentException("No es posible realizar la operación. El saldo es inferior a la cantidad a retirar. ");
         else
@@ -136,13 +136,93 @@ public class CuentaBancaria {
     public String toString() {
         String DC;
 
-        DC = obtenerDigitosControl(this.entidad, this.oficina, this.numCuenta);
+        DC = obtenerDigitosControl(this.getEntidad(), this.getOficina(), this.getNumCuenta());
 
-        return  "Titular: " + this.titular + " \n" +
-                "Entidad: " + this.entidad + " \n" +
-                "Oficina: " + this.oficina + " \n" +
+        return  "Titular: " + this.getTitular() + " \n" +
+                "Entidad: " + this.getEntidad() + " \n" +
+                "Oficina: " + this.getOficina() + " \n" +
                 "DC: " + DC + " \n" +
-                "Número de cuenta: " + this.numCuenta + " \n" +
-                "Saldo: "+ this.saldo;
+                "Número de cuenta: " + this.getNumCuenta() + " \n" +
+                "Saldo: "+ this.getSaldo();
+    }
+
+    /**
+     * Getter del atributo Titular
+     * @return
+     */
+    public String getTitular() {
+        return titular;
+    }
+
+    /**
+     * Setter del atributo Titular como parámetro
+     * @param titular
+     */
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
+    /**
+     * Getter del atributo Saldo
+     * @return
+     */
+    public double getSaldo() {
+        return saldo;
+    }
+
+    /**
+     * Setter del atributo saldo como parámetro
+     * @param saldo
+     */
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    /**
+     * Getter del atributo entidad
+     * @return
+     */
+    public String getEntidad() {
+        return entidad;
+    }
+
+    /**
+     * Setter del atributo Entidad como parámetro
+     * @param entidad
+     */
+    public void setEntidad(String entidad) {
+        this.entidad = entidad;
+    }
+
+    /**
+     * Getter del atributo Oficina
+     * @return
+     */
+    public String getOficina() {
+        return oficina;
+    }
+
+    /**
+     * Setter del atributo Oficina como parámetro
+     * @param oficina
+     */
+    public void setOficina(String oficina) {
+        this.oficina = oficina;
+    }
+
+    /**
+     * Getter del atributo NumCuenta
+     * @return
+     */
+    public String getNumCuenta() {
+        return numCuenta;
+    }
+
+    /**
+     * Setter del atributo NumCuenta como parámetro
+     * @param numCuenta
+     */
+    public void setNumCuenta(String numCuenta) {
+        this.numCuenta = numCuenta;
     }
 }

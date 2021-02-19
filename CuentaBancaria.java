@@ -14,7 +14,6 @@ public class CuentaBancaria {
     private String entidad;
     private String oficina;
     private String numCuenta;
-
     // atributos de clase
     private static final int TAM_MAX = 100;
     private static final int TAM_MIN = 10;
